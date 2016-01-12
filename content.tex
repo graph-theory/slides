@@ -15,65 +15,107 @@
 	\tableofcontents
 \end{frame}
 
-\section{Ionic}
+\section{Graphs}
 
-\begin{frame}{Ionic Framework}
-  \begin{description}
-		\item[Ionic] is a cross-platform mobile development framework built on top of Cordova and Node.js.
-    \vspace{0.25cm}
-		\item[Cordova] Cordova is an open-source fork of PhoneGap.
-    \vspace{0.25cm}
-		\item[Protocol] Node is a JavaScript interpreter for the command line.
-  \end{description}
+\begin{frame}{Seven Bridges of K{\"o}nigsberg}
+	\begin{center}
+		\includegraphics[width=9cm]{img/konigsberg.png}
+	\end{center}
+	Is it possible to walk through the city crossing each of the seven bridges once and only once?
+		\citeurl{www.nature.com/nbt/journal/v29/n11}
+\end{frame}
+
+\begin{frame}{Leonhard Euler}
+  \begin{columns}
+    \begin{column}{0.25\textwidth}
+      \includegraphics[height=1.8in]{img/euler.jpg}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{itemize}
+    		\item Born 1707 in Basel, Switzerland.
+        \vspace{0.25cm}
+    		\item Euler's identity: $\mathrm{e}^{i \pi} + 1 = 0$.
+        \vspace{0.25cm}
+    		\item Solved the Bridges of K{\"o}nigsberg problem.
+        \vspace{0.25cm}
+        \item It's not possible to cross all bridges once and once only.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \citeurl{https://en.wikipedia.org/wiki/Leonhard\_Euler}
+\end{frame}
+
+\begin{frame}{Graph of K{\"o}nigsberg}
+  \begin{adjustbox}{max width={0.9\textwidth},center} 
+    \begin{tikzpicture}
+			\begin{scope}[every node/.style={circle,thick,draw}]
+		    \node[fill=green] (A) at (0,0) {};
+		    \node[fill=blue] (B) at (2,2) {};
+		    \node[fill=orange] (C) at (6,0) {};
+		    \node[fill=red] (D) at (2,-2) {};
+			\end{scope}
+			\begin{scope}[every edge/.style={draw=black,very thick}]
+		    \path (A) edge[bend right=30] (B);
+    		\path (A) edge[bend left=30] (B);
+		    \path (A) edge[bend right=30] (D);
+		    \path (A) edge[bend left=30]  (D);
+		    \path (B) edge (C);
+		    \path (A) edge (C);
+		    \path (D) edge (C);
+	    \end{scope}
+    \end{tikzpicture}
+  \end{adjustbox}
 \end{frame}
 
 
-\begin{frame}[fragile]{JavaScript Example}
-  \begin{minted}{javascript}
-var groceries = ["Milk", 'Eggs', 7 + "up"];
-
-for (var i = 0; i < groceries.length; i++)
-  console.log(groceries[i]);
-
-if (groceries.length == 0)
-  console.log("The groceries list is empty.");
-else if (groceries.length == 1)
-  console.log("Groceries contains 1 item.");
-else
-  console.log("Groceries contains " + groceries.length
-                              + " items.");
-  \end{minted}
+\begin{frame}{Graph definition}
+	\begin{definition}
+	A \emph{graph} consists of a finite set $V$ and set $E$ of 2-subsets of $V$.
+	\end{definition}
+	\vspace{0.25cm}
+	\begin{description}
+		\item[Vertices] -- the elements of the set $V$ are called vertices.
+		\vspace{0.25cm}
+		\item[Edges] -- the elements of $E$ are called edges.
+		\vspace{0.25cm}
+		\item[$G = (V,E)$] -- this is the way we write the graph $G$ consists of the vertex set $V$ and the edge set $E$.
+	\end{description}
 \end{frame}
 
-
-\begin{frame}[fragile]{HTML Example}
-  \begin{minted}{html}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title></title>
-    <style type="text/css">
-    </style>
-  </head>
-  <body>
-    <p>Hello, world!</p>
-    <script type="text/javascript">
-    </script>
-  </body>
-</html>
-  \end{minted}
+\begin{frame}{Sets of K{\"o}nigsberg}
+$$ V = \{Green, Blue, Orange, Red\} $$
+\begin{align*}
+E = \{&\\
+			&\{Green, Blue\}, \{Green, Blue\}, \{Green, Red\},\\
+      &\{Green, Red\}, \{Blue, Orange\}, \{Green, Orange\},\\
+      &\{Red, Orange\}\\
+      \}&
+\end{align*}
 \end{frame}
 
+\begin{frame}{Defining different types of graphs}
+	
+	\begin{block}{Our definition of a graph}
+	The definition given above for a graph is consistent with looped edges, but not directed edges and not repeated edges. We only need to make small changes to the definition of a graph to allow for directed edges and repeated edges.
+	\end{block}
+	
+	\begin{description}
+		\item[Repeated edges] are edges that start and end at the same nodes.
+		\item[Directed edges] are edges where a direction is added.
+		\item[Looped edges] begin and end at the same node.
+	\end{description}
+	
+	The application will determine the definition we want to use.
+\end{frame}
 
-\section{JavaScript}
+\section{Trees}
 
-\section{AngularJS}
+\section{Paths and Cycles}
 
-\section{Compiling Apps}
+\section{Colouring}
 
-\section{Templates}
+\section{Sorting}
 
-\section{States}
+\section{Searching}
 
-\section{Factories}
+\section{Shortest Paths}
