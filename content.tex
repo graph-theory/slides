@@ -32,11 +32,11 @@
     \end{column}
     \begin{column}{0.6\textwidth}
       \begin{itemize}
-    		\item Born 1707 in Basel, Switzerland.
+    	 \item Born 1707 in Basel, Switzerland.
         \vspace{0.25cm}
-    		\item Euler's identity: $\mathrm{e}^{i \pi} + 1 = 0$.
+    	 \item Euler's identity: $\mathrm{e}^{i \pi} + 1 = 0$.
         \vspace{0.25cm}
-    		\item Solved the Bridges of K{\"o}nigsberg problem.
+    	 \item Solved the Bridges of K{\"o}nigsberg problem.
         \vspace{0.25cm}
         \item It's not possible to cross all bridges once and once only.
       \end{itemize}
@@ -93,6 +93,18 @@ E = \{&\\
 \end{align*}
 \end{frame}
 
+\begin{frame}{Adjanceny list}
+	\begin{center}
+	\begin{tabular}{l|l|l|l}
+	Green & Blue & Orange & Red \\
+	\hline
+	Blue & Green & Blue & Green \\
+	Orange & Orange & Green & Orange \\
+	Red & & Red & 
+	\end{tabular}
+	\end{center}
+\end{frame}
+
 \begin{frame}{Defining different types of graphs}
 	
 	\begin{block}{Our definition of a graph}
@@ -107,6 +119,48 @@ E = \{&\\
 	
 	The application will determine the definition we want to use.
 \end{frame}
+
+
+\begin{frame}{A better example}
+  \begin{adjustbox}{max width={0.9\textwidth},center} 
+    \begin{tikzpicture}
+      \begin{scope}[every node/.style={circle,thick,draw}]
+        \node (a) at (2,4) {a};
+        \node (b) at (4,2) {b};
+        \node (c) at (3,0) {c};
+        \node (d) at (1,0) {d};
+        \node (z) at (0,2) {z};
+      \end{scope}
+      \begin{scope}[every edge/.style={draw=black,thick}]
+        \path (a) edge (b);
+        \path (a) edge (d);
+        \path (b) edge (z);
+        \path (c) edge (d);
+        \path (d) edge (z);
+      \end{scope}
+    \end{tikzpicture}
+  \end{adjustbox}
+  \vspace{0.1cm}
+  \begin{block}{Exercise}
+	Determine the vertex set, edge set and adacency list of this graph.
+  \end{block}
+  
+  \citeurl{global.oup.com/booksites/content/9780198507185/}
+\end{frame}
+
+
+\begin{frame}{Degree of a vertex}
+
+	\begin{definition}
+		The degree of a vertex is the number of edges that contain it.
+	\end{definition}
+	
+    \begin{block}{Exercise}
+	  For each of the vertices on the previous slide, determine their degrees.
+    \end{block}
+
+\end{frame}
+
 
 \section{Trees}
 
