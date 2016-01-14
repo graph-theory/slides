@@ -125,11 +125,19 @@ E = \{&\\
   \begin{adjustbox}{max width={0.9\textwidth},center} 
     \begin{tikzpicture}
       \begin{scope}[every node/.style={circle,thick,draw}]
+<<<<<<< HEAD
         \node (a) at (2,4) {a};
         \node (b) at (4,2) {b};
         \node (c) at (3,0) {c};
         \node (d) at (1,0) {d};
         \node (z) at (0,2) {z};
+=======
+        \node (a) at (2,4) {$a$};
+        \node (b) at (4,2) {$b$};
+        \node (c) at (3,0) {$c$};
+        \node (d) at (1,0) {$d$};
+        \node (z) at (0,2) {$c$};
+>>>>>>> 017f9756bd724414c033b1b0b4cd8682e41cfae0
       \end{scope}
       \begin{scope}[every edge/.style={draw=black,thick}]
         \path (a) edge (b);
@@ -155,8 +163,38 @@ E = \{&\\
 		The degree of a vertex is the number of edges that contain it.
 	\end{definition}
 	
+<<<<<<< HEAD
     \begin{block}{Exercise}
 	  For each of the vertices on the previous slide, determine their degrees.
+=======
+	  
+    \begin{center}
+      \begin{columns}
+    \begin{column}{0.08\textwidth}
+    
+    \begin{tikzpicture}
+      \begin{scope}[every node/.style={circle,thick,draw}]
+        \node (a) at (0,0) {$a$};
+        \node (b) at (2,1) {$b$};
+        \node (c) at (2,-1) {$c$};
+      \end{scope}
+      \begin{scope}[every edge/.style={draw=black,thick}]
+        \path (a) edge (b);
+        \path (a) edge (c);
+      \end{scope}
+    \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+        The degree of the vertex $a$ is 2.
+    \end{column}
+    \end{columns}
+    \end{center}
+
+	
+	
+    \begin{block}{Exercise}
+	  For each of the vertices on the previous slide, determine its degree.
+>>>>>>> 017f9756bd724414c033b1b0b4cd8682e41cfae0
     \end{block}
 
 \end{frame}
