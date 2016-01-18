@@ -129,7 +129,7 @@ E = \{&\\
         \node (b) at (4,2) {$b$};
         \node (c) at (3,0) {$c$};
         \node (d) at (1,0) {$d$};
-        \node (z) at (0,2) {$c$};
+        \node (z) at (0,2) {$z$};
       \end{scope}
       \begin{scope}[every edge/.style={draw=black,thick}]
         \path (a) edge (b);
@@ -154,35 +154,93 @@ E = \{&\\
 	\begin{definition}
 		The degree of a vertex is the number of edges that contain it.
 	\end{definition}
-	
 	  
-    \begin{center}
-      \begin{columns}
-    \begin{column}{0.08\textwidth}
-    
-    \begin{tikzpicture}
-      \begin{scope}[every node/.style={circle,thick,draw}]
-        \node (a) at (0,0) {$a$};
-        \node (b) at (2,1) {$b$};
-        \node (c) at (2,-1) {$c$};
-      \end{scope}
-      \begin{scope}[every edge/.style={draw=black,thick}]
-        \path (a) edge (b);
-        \path (a) edge (c);
-      \end{scope}
-    \end{tikzpicture}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-        The degree of the vertex $a$ is 2.
-    \end{column}
+  \begin{center}
+    \begin{columns}
+      \begin{column}{0.2\textwidth}
+        \begin{tikzpicture}
+          \begin{scope}[every node/.style={circle,thick,draw}]
+            \node (a) at (0,0) {$a$};
+            \node (b) at (2,1) {$b$};
+            \node (c) at (2,-1) {$c$};
+          \end{scope}
+          \begin{scope}[every edge/.style={draw=black,thick}]
+            \path (a) edge (b);
+            \path (a) edge (c);
+          \end{scope}
+        \end{tikzpicture}
+      \end{column}
+      \begin{column}{0.5\textwidth}
+          The degree of the vertex $a$ is 2.
+      \end{column}
     \end{columns}
-    \end{center}
+  \end{center}
 
-	
-	
-    \begin{block}{Exercise}
-	  For each of the vertices on the previous slide, determine its degree.
-    \end{block}
+  \begin{block}{Exercise}
+    For each of the vertices on the previous slide, determine its degree.
+  \end{block}
+
+\end{frame}
+
+
+\begin{frame}{Isomorphism}
+
+	\begin{definition}
+		Two graphs $G_1$ and $G_2$ are said to be isomorphic when there is a bijection $\alpha$ for the vertex set $V_1$ of $G_1$ to the vertex set $V_2$ of $G_2$ such that $\{\alpha (x) , \alpha (y) \}$ is an edge of $G_2$ if and only if $(x,y)$ is an edge of $G_1$.
+	\end{definition}
+	  
+  \begin{center}
+    \begin{columns}
+      \begin{column}{0.33\textwidth}
+        \begin{tikzpicture}
+          \begin{scope}[every node/.style={circle,thick,draw}]
+            \node (a) at (0,0) {$a$};
+            \node (b) at (0,2) {$b$};
+            \node (c) at (2,2) {$c$};
+            \node (d) at (2,0) {$d$};
+          \end{scope}
+          \begin{scope}[every edge/.style={draw=black,thick}]
+            \path (a) edge (b);
+            \path (b) edge (c);
+            \path (c) edge (d);
+            \path (d) edge (a);
+          \end{scope}
+        \end{tikzpicture}
+      \end{column}
+      \begin{column}{0.33\textwidth}
+        \begin{tikzpicture}
+          \begin{scope}[every node/.style={circle,thick,draw}]
+            \node (a) at (0,0) {$a$};
+            \node (c) at (0,2) {$c$};
+            \node (b) at (2,2) {$b$};
+            \node (d) at (2,0) {$d$};
+          \end{scope}
+          \begin{scope}[every edge/.style={draw=black,thick}]
+            \path (b) edge (c);
+            \path (c) edge (d);
+            \path (b) edge (a);
+            \path (d) edge (a);
+          \end{scope}
+        \end{tikzpicture}
+      \end{column}
+            \begin{column}{0.33\textwidth}
+        \begin{tikzpicture}
+          \begin{scope}[every node/.style={circle,thick,draw}]
+            \node (a) at (0,0) {$a$};
+            \node (b) at (0,2) {$b$};
+            \node (c) at (2,2) {$c$};
+            \node (d) at (2,0) {$d$};
+          \end{scope}
+          \begin{scope}[every edge/.style={draw=black,thick}]
+            \path (b) edge (c);
+            \path (c) edge (d);
+            \path (b) edge (a);
+            \path (d) edge (a);
+          \end{scope}
+        \end{tikzpicture}
+      \end{column}
+    \end{columns}
+  \end{center}
 
 \end{frame}
 
