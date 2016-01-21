@@ -183,54 +183,6 @@ E = \{&\\
 \end{frame}
 
 
-\begin{frame}{Functions}
-
-	\begin{definition}
-		Suppose that $X$ and $Y$ are sets.
-		We say we have a function $f$ from $X$ to $Y$ if for each $x$ in $X$ we can specify a unique element in $Y$, which we denote by $f(x)$.
-	\end{definition}
-
-	\begin{center}
-		\begin{tikzpicture}
-			\draw (0,0) ellipse (0.75 and 1.25);
-			\draw (0,-1.5) node {$X$};
-			\draw (3,0) ellipse (0.75 and 1.25);
-			\draw (3,-1.5) node {$Y$};
-
-			\draw [->]  (0.5,0) node[anchor=east] {$x$} -- (2.5,0) node[anchor=west] {$f(x)$};
-		\end{tikzpicture}
-	\end{center}
-
-\end{frame}
-
-
-
-\begin{frame}{Bijections}
-
-	\begin{definition}
-		A bijection is function $f$ from a set $X$ to a set $Y$ where both of the following are true:
-			\begin{itemize}
-				\item every $y$ in $Y$ is a value $f(x)$ for at most one $x$ in $X$.
-				\item every $y$ in $Y$ is a value $f(x)$ for at least one $x$ in  $X$.
-			\end{itemize}
-	\end{definition}
-
-	\begin{center}
-		\begin{tikzpicture}
-			\draw (0,0) ellipse (1 and 1.9);
-			\draw (0,-2.5) node {$X$};
-			\draw (3,0) ellipse (1 and 1.9);
-			\draw (3,-2.5) node {$Y$};
-
-			\draw [->]  (0.5,1) node[anchor=east] {$x_1$} -- (2.65,1) node[anchor=west] {$f(x_1)$};
-			\draw [->]  (0.5,0) node[anchor=east] {$x_2$} -- (2.65,0) node[anchor=west] {$f(x_2)$};
-			\draw [->]  (0.5,-1) node[anchor=east] {$x_2$} -- (2.65,-1) node[anchor=west] {$f(x_3)$};
-		\end{tikzpicture}
-	\end{center}
-
-\end{frame}
-
-
 \begin{frame}{Isomorphism}
 
 	\begin{definition}
@@ -255,7 +207,6 @@ E = \{&\\
           \end{scope}
         \end{tikzpicture}
       \end{column}
-      
       \begin{column}{0.3\textwidth}
         \begin{tikzpicture}
           \begin{scope}[every node/.style={circle,thick,draw}]
@@ -272,8 +223,7 @@ E = \{&\\
           \end{scope}
         \end{tikzpicture}
       \end{column}
-      
-      \begin{column}{0.3\textwidth}
+            \begin{column}{0.3\textwidth}
         \begin{tikzpicture}
           \begin{scope}[every node/.style={circle,thick,draw}]
             \node (a) at (0,0) {$a$};
@@ -293,9 +243,6 @@ E = \{&\\
   \end{center}
 
 \end{frame}
-
-
-
 
 
 \section{Trees}
