@@ -655,29 +655,20 @@ E = \{&\\
     An \emph{Eulerian walk} is a walk which uses each edge of the graph exactly once.
   \end{definition}
   
-  For instance, in the following graph $a,b,c,d,f,e,a$ is a path.
+  For instance, in the following graph $a,d,f,e,a$ is an Eulerian walk.
   \begin{center}
     \begin{tikzpicture}
     \begin{scope}[every node/.style={circle,thick,draw}]
     \node (a) at (0,1) {a};
-    \node (b) at (0,4) {b};
-    \node (c) at (2,1) {c};
     \node (d) at (2,3) {d};
     \node (e) at (-1,1) {e};
     \node (f) at (-1,3) {f};
     \end{scope}
     \begin{scope}[every edge/.style={draw=black,thick}]
-    \path (a) edge[orange] (b);
-    \path (a) edge[orange] (d);
-    \path (a) edge[orange] (e);
-    \path (b) edge[orange] (c);
-    \path (b) edge (d);
-    \path (b) edge (e);
-    \path (b) edge (f);
-    \path (c) edge[orange] (d);
-    \path (d) edge (e);           
-    \path (d) edge[orange] (f);
-    \path (e) edge[orange] (f);
+    \path (a) edge[purple] (d);
+    \path (a) edge[purple] (e);          
+    \path (d) edge[purple] (f);
+    \path (e) edge[purple] (f);
     \end{scope}
     \end{tikzpicture}
   \end{center}
