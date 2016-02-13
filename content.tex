@@ -224,7 +224,7 @@ E = \{&\\
 
 			\draw [->]  (0.5,1) node[anchor=east] {$x_1$} -- (2.65,1) node[anchor=west] {$f(x_1)$};
 			\draw [->]  (0.5,0) node[anchor=east] {$x_2$} -- (2.65,0) node[anchor=west] {$f(x_2)$};
-			\draw [->]  (0.5,-1) node[anchor=east] {$x_2$} -- (2.65,-1) node[anchor=west] {$f(x_3)$};
+			\draw [->]  (0.5,-1) node[anchor=east] {$x_3$} -- (2.65,-1) node[anchor=west] {$f(x_3)$};
 		\end{tikzpicture}
 	\end{center}
 
@@ -673,6 +673,112 @@ E = \{&\\
     \end{tikzpicture}
   \end{center}
 \end{frame}
+
+
+\section{Cypher}
+\begin{frame}{Digraph definition}
+  \begin{definition}
+    A \emph{digraph} (short for directional graph) consists of a finite set $V$ and a set $E$ of ordered pairs of elements of $V$.
+  \end{definition}
+  \vspace{0.25cm}
+  \begin{description}
+    \item[Degrees] of vertices can now be split into in-degrees and out-degrees.
+    \item[Walks, paths, cycles] must be redefined.
+    \item[Loops] are allowed in the above definition, unless we rule them out.
+  \end{description}
+\end{frame}
+
+
+\begin{frame}{Digraph example}
+  \begin{center}
+    \begin{tikzpicture}
+    \begin{scope}[every node/.style={circle,thick,draw}]
+    \node (a) at (0,0) {$a$};
+    \node (b) at (0,3) {$b$};
+    \node (c) at (3,3) {$c$};
+    \node (d) at (3,0) {$d$};
+    \end{scope}
+    \begin{scope}[every edge/.style={draw=black,thick}]
+    \path (b) edge[->,> = latex'] (c);
+    \path (b) edge[->,> = latex'] (d);
+    \path (d) edge[->,> = latex'] (c);
+    \path (c) edge[->,> = latex'] (a);
+    \path (d) edge[->,> = latex'] (a);
+    \end{scope}
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\section{Graph databases}
+
+\begin{frame}{Neo4j}
+    \begin{columns}
+      \begin{column}{0.25\textwidth}
+        \includegraphics[height=1.8in]{img/neo4j.png}
+      \end{column}
+      \begin{column}{0.6\textwidth}
+        \begin{itemize}
+          \item Neo4j is an open-source NoSQL graph database implemented in Java and Scala.
+          \vspace{0.25cm}
+          \item Development started in 2003, it has been publicly available since 2007
+          \vspace{0.25cm}
+          \item Available on GitHub.
+          \vspace{0.25cm}
+          \item A graph is composed of two elements: a node and a relationship.
+        \end{itemize}
+      \end{column}
+    \end{columns}
+    \citeurl{http://neo4j.com/developer/graph-database/}
+\end{frame}
+
+
+\begin{frame}{Cypher}
+  \begin{columns}
+    \begin{column}{0.25\textwidth}
+      \includegraphics[height=1.8in]{img/neo4j.png}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{itemize}
+        \item Cypher is a declarative graph query language.
+        \vspace{0.25cm}
+        \item What to retrieve from a graph, not on how to retrieve it.
+        \vspace{0.25cm}
+        \item Allows for expressive and efficient querying and updating of the graph store.
+        \vspace{0.25cm}
+        \item Cypher borrows its structure from SQL.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \citeurl{http://neo4j.com/docs/stable/cypher-introduction.html}
+\end{frame}
+
+
+\begin{frame}[fragile]{Cypher: Nodes}
+  \begin{minted}[linenos, frame=lines, framesep=2mm]{cypher}
+MATCH (user:User)
+WHERE user.Id = 1234
+RETURN user
+  \end{minted}
+  \begin{minted}[linenos, frame=lines, framesep=2mm]{cypher}
+CREATE (user:User { Id: 456, Name: 'Jim' })
+  \end{minted}
+  \citeurl{docs.python.org/3/tutorial}
+\end{frame}
+
+\begin{frame}[fragile]{Cypher: Nodes}
+  \begin{minted}[linenos, frame=lines, framesep=2mm]{cypher}
+MATCH (user1:User), (user2:User)
+WHERE user1.Id = 123, user2.Id = 456
+CREATE user1-[:FRIENDS_WITH]->user2
+  \end{minted}
+  \begin{minted}[linenos, frame=lines, framesep=2mm]{cypher}
+MATCH (invitee:User)
+WHERE invitee.Id = 123
+CREATE invitee-[:INVITED]->(invited:User {newUser})
+  \end{minted}
+  \citeurl{docs.python.org/3/tutorial}
+\end{frame}
+
 
 
 \section{Trees}
