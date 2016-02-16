@@ -755,12 +755,12 @@ E = \{&\\
 
 \begin{frame}[fragile]{Cypher: Nodes}
   \begin{minted}[linenos, frame=lines, framesep=2mm]{cypher}
-MATCH (user:User)
-WHERE user.Id = 1234
-RETURN user
+CREATE (user:User { Id: 123, Name: "Jim" })
   \end{minted}
   \begin{minted}[linenos, frame=lines, framesep=2mm]{cypher}
-CREATE (user:User { Id: 456, Name: 'Jim' })
+MATCH (user:User)
+WHERE user.Id = 123
+RETURN user
   \end{minted}
   \citeurl{docs.python.org/3/tutorial}
 \end{frame}
