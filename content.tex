@@ -754,31 +754,63 @@ E = \{&\\
 
 
 \begin{frame}[fragile]{Cypher: Nodes}
+  Create a node with the label User, and two properties:
   \begin{minted}[linenos, frame=lines, framesep=2mm]{cypher}
-CREATE (user:User { Id: 123, Name: "Jim" })
+CREATE (user:User { Id: 123, Name: "Jim" });
   \end{minted}
+  \vspace{1cm}
+  Find the node(s) with label User and their Id property being 123:
   \begin{minted}[linenos, frame=lines, framesep=2mm]{cypher}
 MATCH (user:User)
 WHERE user.Id = 123
-RETURN user
+RETURN user;
   \end{minted}
-  \citeurl{docs.python.org/3/tutorial}
+  \citeurl{neo4j.com/docs/stable/cypher-query-lang.html}
 \end{frame}
 
-\begin{frame}[fragile]{Cypher: Nodes}
+\begin{frame}[fragile]{Cypher: Relationships}
+  Create a relationship with label FOLLOWS from user(s) with Id 123 to user(s) with Id 456: 
   \begin{minted}[linenos, frame=lines, framesep=2mm]{cypher}
 MATCH (user1:User), (user2:User)
 WHERE user1.Id = 123, user2.Id = 456
-CREATE user1-[:FRIENDS_WITH]->user2
+CREATE user1-[:FOLLOWS]->user2;
   \end{minted}
-  \begin{minted}[linenos, frame=lines, framesep=2mm]{cypher}
-MATCH (invitee:User)
-WHERE invitee.Id = 123
-CREATE invitee-[:INVITED]->(invited:User {newUser})
-  \end{minted}
-  \citeurl{docs.python.org/3/tutorial}
+  \citeurl{neo4j.com/docs/stable/cypher-query-lang.html}
 \end{frame}
 
+\begin{frame}[fragile]{Cypher: Relationships and Nodes}
+  Create a relationship with label INVITED from user(s) with Id 123 to a new user with Id 789 and Name Jack: 
+  \begin{minted}[linenos, frame=lines]{cypher}
+MATCH (invitee:User)
+WHERE invitee.Id = 123
+CREATE invitee-[:INVITED]->(invited:User {Id: 789,
+                                        Name: "Jack"});
+  \end{minted}
+  \citeurl{neo4j.com/docs/stable/cypher-query-lang.html}
+\end{frame}
+
+
+\begin{frame}[fragile]{Cypher: DELETE}
+  Delete all nodes: 
+  \begin{minted}[linenos, frame=lines]{cypher}
+MATCH (x)
+DELETE x;
+  \end{minted}
+  \citeurl{neo4j.com/docs/stable/cypher-query-lang.html}
+\end{frame}
+
+\begin{frame}{Labels and properties}
+  \begin{itemize}
+    \item Suppose we have nodes representing people.
+    \item We give them the label People.
+    \item We also want to identify each person as either Male or Female.
+    \item Should we use Male and Female labels, or a Gender property?
+    \item If you are going to use the person's gender in a lot of queries, a normal property will be relatively slow, so you should use a label.
+    \item However, you can also index some of your properties to high-light them as important.
+    
+  \end{itemize}
+  \citeurl{neo4j.com/docs/stable/cypher-query-lang.html}
+\end{frame}
 
 
 \section{Trees}
