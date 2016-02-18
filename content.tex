@@ -772,7 +772,7 @@ RETURN user;
   Create a relationship with label FOLLOWS from user(s) with Id 123 to user(s) with Id 456: 
   \begin{minted}[linenos, frame=lines, framesep=2mm]{cypher}
 MATCH (user1:User), (user2:User)
-WHERE user1.Id = 123, user2.Id = 456
+WHERE user1.Id = 123 AND user2.Id = 456
 CREATE user1-[:FOLLOWS]->user2;
   \end{minted}
   \citeurl{neo4j.com/docs/stable/cypher-query-lang.html}
