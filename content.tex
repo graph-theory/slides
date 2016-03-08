@@ -67,7 +67,6 @@
   \end{adjustbox}
 \end{frame}
 
-
 \begin{frame}{Graph definition}
 	\begin{definition}
 	A \emph{graph} consists of a finite set $V$ and a set $E$ of 2-subsets of $V$.
@@ -812,13 +811,192 @@ DELETE x;
   \citeurl{neo4j.com/docs/stable/cypher-query-lang.html}
 \end{frame}
 
+\begin{frame}[fragile]{Cypher: shortestPath}
+  Find the minimum number of hops betweem two nodes.
+  \begin{minted}[linenos, frame=lines]{cypher}
+MATCH p=shortestPath(
+  (a:Actor {id: 1})-[*]-(b:Actor {id: 10})
+  )
+RETURN p;
+  \end{minted}
+  \citeurl{neo4j.com/docs/stable/cypher-query-lang.html}
+\end{frame}
+
 
 \section{Trees}
+\begin{frame}{Definition}
+  
+  \begin{block}{Tree}
+    A \emph{tree} is a graph where every pair of nodes has a path between them, and there are no cycles.
+  \end{block}
+  
+\begin{columns}
+  \begin{column}{0.5\textwidth}
+    \begin{center}
+      \begin{tikzpicture}
+      \begin{scope}[every node/.style={circle,thick,draw,fill}]
+      \node (a) at (1.5,3) {};
+      \node (b) at (0.5,1.5) {};
+      \node (c) at (2,1.5) {};
+      \node (d) at (1.25,0) {};
+      \node (e) at (2.75,0) {};
+      \end{scope}
+      \begin{scope}[every edge/.style={draw=black,thick}]
+      \path (a) edge (b);
+      \path (a) edge (c);
+      \path (c) edge (d);
+      \path (c) edge (e);
+      \end{scope}
+      \end{tikzpicture}
+    \end{center}
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    \begin{center}
+      \begin{tikzpicture}
+      \begin{scope}[every node/.style={circle,thick,draw,fill}]
+      \node (a) at (0,3) {};
+      \node (b) at (0,1) {};
+      \node (c) at (2,1) {};
+      \end{scope}
+      \begin{scope}[every edge/.style={draw=black,thick}]
+      \path (a) edge (b);
+      \path (b) edge (c);
+      \end{scope}
+      \end{tikzpicture}
+    \end{center}
+  \end{column}
+\end{columns}
+\end{frame}
 
-\section{Colouring}
+\begin{frame}{Definition}
+  
+  \begin{block}{Tree}
+    A \emph{tree} is a graph where every pair of vertices has a path between them, and there are no cycles.
+  \end{block}
+  
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        \begin{tikzpicture}
+        \begin{scope}[every node/.style={circle,thick,draw,fill}]
+        \node (a) at (1.5,3) {};
+        \node (b) at (0.5,1.5) {};
+        \node (c) at (2,1.5) {};
+        \node (d) at (1.25,0) {};
+        \node (e) at (2.75,0) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw=black,thick}]
+        \path (a) edge (b);
+        \path (a) edge (c);
+        \path (c) edge (d);
+        \path (c) edge (e);
+        \end{scope}
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        \begin{tikzpicture}
+        \begin{scope}[every node/.style={circle,thick,draw,fill}]
+        \node (a) at (0,3) {};
+        \node (b) at (0,1) {};
+        \node (c) at (2,1) {};
+        \node (d) at (3,2) {};
+        \node (e) at (3,3) {};
+        \end{scope}
+        \begin{scope}[every edge/.style={draw=black,thick}]
+        \path (a) edge (b);
+        \path (b) edge (c);
+        \path (c) edge (d);
+        \path (c) edge (e);
+        \end{scope}
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
 
-\section{Sorting}
+\begin{frame}{Levels}
+  \begin{description}
+    \item[Root] Specified vertex for some purpose.
+    \item[Levels] Root is at level 0, neighbours of the root are at level 1, their other neighbours at level 2, and so on.
+    \item[Leaf] Vertex at level $i$ with no neighbours at level $i+1$.
+    \item[Internal vertex] A non-leaf.
+  \end{description}
+  \vspace{0.5cm}
+  \begin{center}
+    \begin{tikzpicture}
+    \begin{scope}[every node/.style={circle,thick,draw,fill}]
+      \node (a) at (1.5,3) {};
+      \node (b)[green!50!black] at (0.5,1.5) {};
+      \node (c) at (2.5,1.5) {};
+      \node (d)[green!50!black] at (1.5,0) {};
+      \node (e)[green!50!black] at (3.5,0) {};
+    \end{scope}
+    \node () [right of=a, anchor=west] {\footnotesize Level 0 (root)};
+    \node () [right of=c, anchor=west] {\footnotesize Level 1};
+    \node () [right of=e, anchor=west] {\footnotesize Level 2};
+    \node () [left of=b] {\footnotesize leaf};
+    \node () [left of=e] {\footnotesize leaves};
+    \begin{scope}[every edge/.style={draw=black,thick}]
+      \path (a) edge (b);
+      \path (a) edge (c);
+      \path (c) edge (d);
+      \path (c) edge (e);
+    \end{scope}
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
 
-\section{Searching}
+\begin{frame}{$m$-ary Rooted Tree}
+  \begin{definition}
+    When a vertex at level $i$ is connected to a vertex at level $i+1$ it's common to call the former the \emph{father} and the latter the \emph{son}.
+    A rooted tree is $m$-ary if every father has the same number of sons.
+    A $2$-ary rooted tree is called a \emph{binary tree}.
+  \end{definition}
+  \begin{center}
+    \begin{tikzpicture}
+    \begin{scope}[every node/.style={circle,draw,fill,scale=0.6}]
+    \node (a) at (3,4) {};
+    \node (b) at (1,3) {};
+    \node (c) at (5,3) {};
+    \node (d) at (0,2) {};
+    \node (e) at (2,2) {};
+    \node (f) at (4,2) {};
+    \node (g) at (6,2) {};
+    \node (h) at (-0.7,1) {};
+    \node (i) at (0.7,1) {};
+    \node (j) at (1.3,1) {};
+    \node (k) at (2.7,1) {};
+    \node (l) at (3.3,1) {};
+    \node (m) at (4.7,1) {};
+    \node (n) at (5.3,1) {};
+    \node (o) at (6.7,1) {};
+    \end{scope}
+    \begin{scope}[every edge/.style={draw=black}]
+    \path (a) edge (b);
+    \path (a) edge (c);
+    \path (b) edge (d);
+    \path (b) edge (e);
+    \path (c) edge (f);
+    \path (c) edge (g);
+    \path (d) edge (h);
+    \path (d) edge (i);
+    \path (e) edge (j);
+    \path (e) edge (k);
+    \path (f) edge (l);
+    \path (f) edge (m);
+    \path (g) edge (n);
+    \path (g) edge (o);
+    \end{scope}
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
 
-\section{Shortest Paths}
+\begin{frame}{Height of an $m$-ary tree}
+  
+  \begin{theorem}
+    The height of an $m$-ary rooted tree with $l$ leaves is at least $\log_m l$.
+  \end{theorem}
+  
+\end{frame}
