@@ -71,7 +71,7 @@
 	\begin{definition}
 	A \emph{graph} consists of a finite set $V$ and a set $E$ of 2-subsets of $V$.
 	\end{definition}
-	\vspace{0.25cm}
+	\vspace{0.5cm}
 	\begin{description}
 		\item[Vertices] -- the elements of the set $V$ are called vertices.
 		\vspace{0.25cm}
@@ -94,12 +94,12 @@ E = \{&\\
 
 \begin{frame}{Adjanceny list}
 	\begin{center}
-	\begin{tabular}{l|l|l|l}
+	\begin{tabular}{c@{\hskip 0.5cm}c@{\hskip 0.5cm}c@{\hskip 0.5cm}c}
 	Green & Blue & Orange & Red \\
-	\hline
+  \midrule
 	Blue & Green & Blue & Green \\
 	Orange & Orange & Green & Orange \\
-	Red & & Red & 
+	Red & & Red & \\
 	\end{tabular}
 	\end{center}
 \end{frame}
@@ -217,9 +217,9 @@ E = \{&\\
 	\begin{center}
 		\begin{tikzpicture}
 			\draw (0,0) ellipse (1 and 1.9);
-			\draw (0,-2.5) node {$X$};
+			\draw (0,-2.2) node {$X$};
 			\draw (3,0) ellipse (1 and 1.9);
-			\draw (3,-2.5) node {$Y$};
+			\draw (3,-2.2) node {$Y$};
 
 			\draw [->]  (0.5,1) node[anchor=east] {$x_1$} -- (2.65,1) node[anchor=west] {$f(x_1)$};
 			\draw [->]  (0.5,0) node[anchor=east] {$x_2$} -- (2.65,0) node[anchor=west] {$f(x_2)$};
@@ -954,7 +954,7 @@ RETURN p;
 
 \begin{frame}{Isomorphic Rooted Trees}
   \begin{definition}
-   Two rooted trees are said to be \emph{isomorphic} if there is an isomorphism between them considered which takes the root of one tree to the root of the other.
+   Two rooted trees are said to be \emph{isomorphic} if there is an isomorphism between them which takes the root of one tree to the root of the other.
   \end{definition}
 \end{frame}
 
