@@ -1,0 +1,151 @@
+%!TEX root = slides.tex
+
+
+\section{Graph databases}
+
+
+\begin{frame}{Digraph definition}
+  \begin{definition}
+    A \emph{digraph} (short for directional graph) consists of a finite set $V$ and a set $E$ of ordered pairs of elements of $V$.
+  \end{definition}
+  \vspace{0.25cm}
+  \begin{description}
+    \item[Degrees] of vertices can now be split into in-degrees and out-degrees.
+    \item[Walks, paths, cycles] must be redefined.
+    \item[Loops] are allowed in the above definition, unless we rule them out.
+  \end{description}
+\end{frame}
+
+
+\begin{frame}{Digraph example}
+  \begin{center}
+    \begin{tikzpicture}
+    \begin{scope}[every node/.style={circle,thick,draw}]
+    \node (a) at (0,0) {$a$};
+    \node (b) at (0,3) {$b$};
+    \node (c) at (3,3) {$c$};
+    \node (d) at (3,0) {$d$};
+    \end{scope}
+    \begin{scope}[every edge/.style={draw=black,thick}]
+    \path (b) edge[->,> = latex'] (c);
+    \path (b) edge[->,> = latex'] (d);
+    \path (d) edge[->,> = latex'] (c);
+    \path (c) edge[->,> = latex'] (a);
+    \path (d) edge[->,> = latex'] (a);
+    \end{scope}
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Neo4j}
+    \begin{columns}
+      \begin{column}{0.25\textwidth}
+        \includegraphics[height=1.8in]{img/neo4j.png}
+      \end{column}
+      \begin{column}{0.6\textwidth}
+        \begin{itemize}
+          \item Neo4j is an open-source NoSQL graph database implemented in Java and Scala.
+          \vspace{0.25cm}
+          \item Development started in 2003, it has been publicly available since 2007
+          \vspace{0.25cm}
+          \item Available on GitHub.
+          \vspace{0.25cm}
+          \item A graph is composed of two elements: a node and a relationship.
+        \end{itemize}
+      \end{column}
+    \end{columns}
+    \citeurl{http://neo4j.com/developer/graph-database/}
+\end{frame}
+
+
+\begin{frame}{Cypher}
+  \begin{columns}
+    \begin{column}{0.25\textwidth}
+      \includegraphics[height=1.8in]{img/neo4j.png}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+      \begin{itemize}
+        \item Cypher is a declarative graph query language.
+        \vspace{0.25cm}
+        \item What to retrieve from a graph, not on how to retrieve it.
+        \vspace{0.25cm}
+        \item Allows for expressive and efficient querying and updating of the graph store.
+        \vspace{0.25cm}
+        \item Cypher borrows its structure from SQL.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \citeurl{http://neo4j.com/docs/stable/cypher-introduction.html}
+\end{frame}
+
+
+\begin{frame}[fragile]{Cypher: Nodes}
+  Create a node with the label User, and two properties:
+  \begin{minted}[linenos, frame=lines, framesep=2mm]{cypher}
+CREATE (user:User { Id: 123, Name: "Jim" });
+  \end{minted}
+  \vspace{1cm}
+  Find the node(s) with label User and their Id property being 123:
+  \begin{minted}[linenos, frame=lines, framesep=2mm]{cypher}
+MATCH (user:User)
+WHERE user.Id = 123
+RETURN user;
+  \end{minted}
+  \citeurl{neo4j.com/docs/stable/cypher-query-lang.html}
+\end{frame}
+
+\begin{frame}[fragile]{Cypher: Relationships}
+  Create a relationship with label FOLLOWS from user(s) with Id 123 to user(s) with Id 456: 
+  \begin{minted}[linenos, frame=lines, framesep=2mm]{cypher}
+MATCH (user1:User), (user2:User)
+WHERE user1.Id = 123 AND user2.Id = 456
+CREATE user1-[:FOLLOWS]->user2;
+  \end{minted}
+  \citeurl{neo4j.com/docs/stable/cypher-query-lang.html}
+\end{frame}
+
+\begin{frame}[fragile]{Cypher: Relationships and Nodes}
+  Create a relationship with label INVITED from user(s) with Id 123 to a new user with Id 789 and Name Jack: 
+  \begin{minted}[linenos, frame=lines]{cypher}
+MATCH (invitee:User)
+WHERE invitee.Id = 123
+CREATE invitee-[:INVITED]->(invited:User {Id: 789,
+                                        Name: "Jack"});
+  \end{minted}
+  \citeurl{neo4j.com/docs/stable/cypher-query-lang.html}
+\end{frame}
+
+
+\begin{frame}[fragile]{Cypher: DELETE}
+  Delete all nodes: 
+  \begin{minted}[linenos, frame=lines]{cypher}
+MATCH (x)
+DELETE x;
+  \end{minted}
+  \citeurl{neo4j.com/docs/stable/cypher-query-lang.html}
+\end{frame}
+
+\begin{frame}{Labels and properties}
+  \begin{itemize}
+    \item Suppose we have nodes representing people.
+    \item We give them the label People.
+    \item We also want to identify each person as either Male or Female.
+    \item Should we use Male and Female labels, or a Gender property?
+    \item If you are going to use the person's gender in a lot of queries, a normal property will be relatively slow, so you should use a label.
+    \item However, you can also index some of your properties to high-light them as important.
+    
+  \end{itemize}
+  \citeurl{neo4j.com/docs/stable/cypher-query-lang.html}
+\end{frame}
+
+\begin{frame}[fragile]{Cypher: shortestPath}
+  Find the minimum number of hops betweem two nodes.
+  \begin{minted}[linenos, frame=lines]{cypher}
+MATCH p=shortestPath(
+  (a:Actor {id: 1})-[*]-(b:Actor {id: 10})
+  )
+RETURN p;
+  \end{minted}
+  \citeurl{neo4j.com/docs/stable/cypher-query-lang.html}
+\end{frame}
+
