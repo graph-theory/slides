@@ -520,3 +520,28 @@ E = \{&\\
 		\end{columns}
 	\end{block}
 \end{frame}
+
+
+\begin{frame}{Directed graph definition}
+	\begin{definition}
+	A \emph{directed graph} consists of a finite set $V$ and a set $E$ of 2-tuples (ordered pairs of elements) from $V$.
+	\end{definition}
+	\vspace{0.2cm}
+	\begin{description}
+		\item[Looped edges] are allowed in this definition. A single one per vertex.
+		\item[Multiple edges] between the same start and end vertices are not allowed. However, two edges are allowed between every pair of vartices so long as they have opposite directions.
+		\item[Direct edges] use round brackets rather than curly braces: $E = \{ (a,b) \mid a,b \in V\}$.
+	\end{description}
+\end{frame}
+
+
+\begin{frame}{Multigraph definition}
+	\begin{definition}
+	A \emph{multigraph} consists of a finite set $V$ and a multiset $E$ of 2-subsets from $V$.
+	\end{definition}
+	\vspace{0.2cm}
+	\begin{description}
+		\item[Multisets] are like sets, but the same element can be in the set more than once.
+		\item[Directed multigraphs] are similar, but $E$ is a set of 2-tuples of elements in $V$.
+	\end{description}
+\end{frame}

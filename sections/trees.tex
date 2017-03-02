@@ -86,8 +86,8 @@
 
 \begin{frame}{$m$-ary Rooted Tree}
   \begin{definition}
-    When a vertex at level $i$ is connected to a vertex at level $i+1$ it's common to call the former the \emph{father} and the latter the \emph{son}.
-    A rooted tree is $m$-ary if every father has the same number of sons.
+    When a vertex at level $i$ is connected to a vertex at level $i+1$ it's common to call the former the \emph{parent} and the latter the \emph{child}.
+    A rooted tree is $m$-ary if every parent has the same number of children.
     A $2$-ary rooted tree is called a \emph{binary tree}.
   \end{definition}
   \begin{center}
@@ -131,18 +131,16 @@
 
 \begin{frame}{Isomorphic Rooted Trees}
   \begin{definition}
-   Two rooted trees are said to be \emph{isomorphic} if there is an isomorphism between them which takes the root of one tree to the root of the other.
+   Two rooted trees are said to be \emph{isomorphic} if there is a graph isomorphism between them which takes the root of one tree to the root of the other.
   \end{definition}
 \end{frame}
 
 \begin{frame}{Height of an $m$-ary rooted tree}
-  
   \begin{theorem}
     The height $h$ of an $m$-ary rooted tree with $l$ leaves is at least $\log_m l$.
     That is:
     \[ h \geq \log_m l \]
   \end{theorem}
-  
   \begin{proof}
     First note that: $h \geq log_m l \hspace{0.1cm} \Leftrightarrow \hspace{0.1cm} m^h \geq m^{log_m l} \hspace{0.1cm} \Leftrightarrow \hspace{0.1cm} m^h \geq l$.
     
@@ -153,7 +151,19 @@
     We can create $m$ trees of height $h-1$ from it by deleting the root.
     Each of these smaller trees has at most $m^{h-1}$ leaves, and there are $m$ of them.
     So the big tree has at most $m \times m^{h-1} = m^h$ leaves.
-
   \end{proof}
-  
+\end{frame}
+
+\begin{frame}{Spanning tree}
+  \begin{alertblock}{Subgraph}
+    A \emph{subgraph} $H = (V_H, E_H)$ of a graph $G = (V,E)$ is a graph such that $V_H$ is a subset of $V$, $E_H$ is a subset of $E$, and no element of $E_H$ contains a vertex not in $V_H$.
+  \end{alertblock}
+  \vspace{0.4cm}
+  \begin{alertblock}{Spanning Tree}
+    A \emph{spanning tree} $T$ of a connected graph $G$ is a subgraph of $G$ such that:
+    \begin{itemize}
+      \item the vertix of $T$ is the vertex set of $G$ and
+      \item $T$ is a tree.
+    \end{itemize}
+  \end{alertblock}
 \end{frame}
