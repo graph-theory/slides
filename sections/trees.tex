@@ -51,13 +51,13 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Levels}
+\begin{frame}{Rooted trees}
   \begin{description}
-    \item[Root] Specified vertex for some purpose.
+    \item[Root] Choose any vertex of a tree and call it a root.
     \item[Levels] Root is at level 0, neighbours of the root are at level 1, their other neighbours at level 2, and so on.
-    \item[Height] $h$, where vertex at level $h$ but not at level $h+1$.
-    \item[Leaf] Vertex at level $i$ with no neighbours at level $i+1$.
-    \item[Internal vertex] A non-leaf.
+    \item[Height] of a tree is $h$, where there's vertex at level $h$ but not at level $h+1$.
+    \item[Leaf] Vertex at level $i$ not connected to a vertex at level $i+1$.
+    \item[Internal vertex] -- a vertex that is not a leaf.
   \end{description}
   \vspace{0.5cm}
   \begin{center}
@@ -129,30 +129,133 @@
   \end{center}
 \end{frame}
 
-\begin{frame}{Isomorphic Rooted Trees}
+\begin{frame}[fragile]{Isomorphic Rooted Trees}
   \begin{definition}
    Two rooted trees are said to be \emph{isomorphic} if there is a graph isomorphism between them which takes the root of one tree to the root of the other.
   \end{definition}
+  \vspace{5mm}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[level/.style={level distance = 1cm},level 1/.style={sibling distance=10mm},level 2/.style={sibling distance=10mm}]
+          \begin{scope}[every node/.style={circle,thick,draw,fill}]
+            \node {}
+              child { node {}
+                child { node {} }
+                child { node {} }
+                child { node {} }
+              }
+              child { node {}
+              }
+              child { node {}
+              };
+          \end{scope}
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[level/.style={level distance = 1cm},level 1/.style={sibling distance=10mm},level 2/.style={sibling distance=10mm}]
+          \begin{scope}[every node/.style={circle,thick,draw,fill}]
+            \node {}
+              child { node {}
+              }
+              child { node {}
+                child { node {} }
+                child { node {} }
+                child { node {} }
+              }
+              child { node {}
+              };
+          \end{scope}
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Height of an $m$-ary rooted tree}
+\begin{frame}{Logarithms}
+  We define $\log$ in the following way:
+  \[ m^h = l \Leftrightarrow \log_m l = h \]
+
+  \begin{alertblock}{What does $log$ mean?}
+    Suppose we have two numbers $m$ and $h$ and we ask the question ``what is $m$ to the power of $h$?''
+    Let's call the the answer $l$, so $l = m^h$.
+
+    The $\log$ function asks the inverse question: ``what do we need to raise $m$ to the power of to get $l$?''
+    The answer is $h$.
+
+    For example, $10^2 = 100$ so $\log_{10} 100 = 2$.
+    The subscript $10$ is called the \emph{base}.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Heights and leaves of $m$-ary rooted trees}
   \begin{theorem}
     The height $h$ of an $m$-ary rooted tree with $l$ leaves is at least $\log_m l$.
     That is:
     \[ h \geq \log_m l \]
   \end{theorem}
   \begin{proof}
-    First note that: $h \geq log_m l \hspace{0.1cm} \Leftrightarrow \hspace{0.1cm} m^h \geq m^{log_m l} \hspace{0.1cm} \Leftrightarrow \hspace{0.1cm} m^h \geq l$.
-    
-    So, we just need to show the number of leaves is at most $m^h$.
-    For a tree of depth 0, there is only one vertex and $m^0 \leq 1$.
-    Suppose we know that the theorem is true for trees of height $h-1$.
-    Consider a tree of height $h$, with $l$ leaves.
+    Note that $h \geq log_m l \hspace{0.1cm} \Leftrightarrow \hspace{0.1cm} m^h \geq m^{log_m l} \hspace{0.1cm} \Leftrightarrow \hspace{0.1cm} m^h \geq l$.
+    So we'll just show $l$ is at most $m^h$.
+    For a tree of height 0, there is only one leaf and $m^0 \geq 1$.
+    Next suppose the theorem is true for trees of height $h-1$, and consider a tree of height $h$ with $l$ leaves.
     We can create $m$ trees of height $h-1$ from it by deleting the root.
     Each of these smaller trees has at most $m^{h-1}$ leaves, and there are $m$ of them.
     So the big tree has at most $m \times m^{h-1} = m^h$ leaves.
   \end{proof}
 \end{frame}
+
+\begin{frame}[fragile]{Examples of heights and leaves of $m$-ary trees}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[level/.style={level distance = 1.4cm},level 1/.style={sibling distance=16mm},level 2/.style={sibling distance=5mm}]
+          \begin{scope}[every node/.style={circle,thick,draw,fill}]
+            \node {}
+              child { node {}
+                child { node[green!50!black] {} }
+                child { node[green!50!black] {} }
+                child { node[green!50!black] {} }
+              }
+              child { node[green!50!black] {}
+              }
+              child { node[green!50!black] {}
+              };
+          \end{scope}
+          \node at (0,1) {$m=3$, $h=2$, $l=5$};
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[level/.style={level distance = 1.4cm},level 1/.style={sibling distance=16mm},level 2/.style={sibling distance=5mm}]
+          \begin{scope}[every node/.style={circle,thick,draw,fill}]
+            \node {}
+              child { node {}
+                child { node[green!50!black] {} }
+                child { node[green!50!black] {} }
+                child { node[green!50!black] {} }
+              }
+              child { node {}
+                child { node[green!50!black] {} }
+                child { node[green!50!black] {} }
+                child { node[green!50!black] {} }
+              }
+              child { node {}
+                child { node[green!50!black] {} }
+                child { node[green!50!black] {} }
+                child { node[green!50!black] {} }
+              };
+          \end{scope}
+          \node at (0,1) {$m=3$, $h=2$, $l=9$};
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
 
 \begin{frame}{Spanning tree}
   \begin{alertblock}{Subgraph}
