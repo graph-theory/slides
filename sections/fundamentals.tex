@@ -67,15 +67,112 @@
 	\end{description}
 \end{frame}
 
+
+\begin{frame}{Example graphs}
+  \begin{columns}
+		\begin{column}{0.45\textwidth}
+			\begin{center}
+				\begin{adjustbox}{max width={0.9\textwidth}, center}
+					\begin{tikzpicture}
+						\begin{scope}[every node/.style={fill=black, circle}]
+		    			\node (a) at (0,0) {};
+							\node (b) at (2,2) {};
+							\node (c) at (2,0) {};
+							\node (d) at (0,2) {};
+						\end{scope}
+						\begin{scope}[every edge/.style={draw=black, very thick}]
+							\path (a) edge (b);
+							\path (a) edge (c);
+							\path (a) edge (d);
+							\path (d) edge (b);
+							\path (d) edge (c);
+						\end{scope}
+						\node at (1,-1) {\tiny 4 vertices, 5 edges};
+					\end{tikzpicture}
+				\end{adjustbox}
+			\end{center}
+		\end{column}
+		\begin{column}{0.45\textwidth}
+			\begin{center}
+				\begin{adjustbox}{max width={0.9\textwidth}, center}
+					\begin{tikzpicture}
+						\begin{scope}[every node/.style={fill=black, circle}]
+		    			\node (a) at (0,0) {};
+							\node (b) at (1,1) {};
+							\node (c) at (0,1) {};
+							\node (d) at (2,1) {};
+							\node (e) at (2,0) {};
+							\node (f) at (1,0) {};
+						\end{scope}
+						\begin{scope}[every edge/.style={draw=black, very thick}]
+							\path (a) edge (b);
+							\path (a) edge (c);
+							\path (b) edge (c);
+							\path (d) edge (e);
+						\end{scope}
+						\node at (1,-1) {\tiny 6 vertices, 4 edges};
+					\end{tikzpicture}
+				\end{adjustbox}
+			\end{center}
+		\end{column}
+	\end{columns}
+	\vspace{5mm}
+	\begin{columns}
+		\begin{column}{0.45\textwidth}
+			\begin{center}
+				\begin{adjustbox}{max width={0.9\textwidth}, center}
+					\begin{tikzpicture}
+						\begin{scope}[every node/.style={fill=black, circle}]
+		    			\node (a) at (1  ,1) {};
+							\node (b) at (1.5,0) {};
+							\node (c) at (2  ,1) {};
+							\node (d) at (1  ,2) {};
+							\node (e) at (0  ,1) {};
+							\node (f) at (0.5,0) {};
+						\end{scope}
+						\begin{scope}[every edge/.style={draw=black, very thick}]
+							\path (a) edge (b);
+							\path (a) edge (d);
+							\path (a) edge (f);
+							\path (b) edge (c);
+							\path (c) edge (d);
+							\path (d) edge (e);
+							\path (e) edge (f);
+							\path (f) edge (b);
+						\end{scope}
+						\node at (1,-1) {\tiny 6 vertices, 8 edges};
+					\end{tikzpicture}
+				\end{adjustbox}
+			\end{center}
+		\end{column}
+				\begin{column}{0.45\textwidth}
+			\begin{center}
+				\begin{adjustbox}{max width={0.9\textwidth}, center}
+					\begin{tikzpicture}
+						\begin{scope}[every node/.style={fill=black, circle}]
+		    			\node (a) at (0,0) {};
+						\end{scope}
+						\node at (0,-1) {\tiny 1 vertex, 0 edges};
+					\end{tikzpicture}
+				\end{adjustbox}
+			\end{center}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+
 \begin{frame}{Sets of K{\"o}nigsberg}
-$$ V = \{Green, Blue, Orange, Red\} $$
-\begin{align*}
-E = \{&\\
-			&\{Green, Blue\}, \{Green, Blue\}, \{Green, Red\},\\
-      &\{Green, Red\}, \{Blue, Orange\}, \{Green, Orange\},\\
-      &\{Red, Orange\}\\
-      \}&
-\end{align*}
+	\begin{align*}
+		V = \{&Green, Blue, Orange, Red\} \\[5mm]
+		E = \{&\{Green, Blue\}, \{Green, Blue\}, \{Green, Red\},\\
+				&\{Green, Red\}, \{Blue, Orange\}, \{Green, Orange\},\\
+				&\{Red, Orange\}\}
+	\end{align*}
+
+	\begin{alertblock}{Not a graph by our definition}
+	Note that the Bridges of K{\"o}nigsberg graph above is not a graph, due to the repeated edges.
+	It's a multi-graph.
+	\end{alertblock}
 \end{frame}
 
 \begin{frame}{Adjanceny list}
@@ -370,6 +467,111 @@ E = \{&\\
 \end{frame}
 
 
+\begin{frame}{Isomorphism example}
+	\begin{center}
+		\begin{tikzpicture}
+			\begin{scope}[every node/.style={circle, fill=black}]
+				\node (a) at (1   ,1.5) {};
+				\node (b) at (1   ,3) {};
+				\node (c) at (0.33,0) {};
+				\node (d) at (1.66,0) {};
+			\end{scope}
+			\begin{scope}[every edge/.style={draw=black,thick}]
+				\path (a) edge (b);
+				\path (a) edge (c);
+				\path (a) edge (d);
+				\path (c) edge (d);
+			\end{scope}
+			\begin{scope}[every node/.style={circle, fill=black}]
+				\node (1) at (6,2) {};
+				\node (2) at (6,0) {};
+				\node (3) at (8,2) {};
+				\node (4) at (8,0) {};
+			\end{scope}
+			\begin{scope}[every edge/.style={draw=black,thick}]
+				\path (1) edge (2);
+				\path (1) edge (3);
+				\path (1) edge (4);
+				\path (3) edge (4);
+			\end{scope}
+			\begin{scope}[every edge/.style={draw=darkgray, dashed, thick, ->, >=latex}]
+				\path (a) edge[bend left] (1);
+				\path (b) edge[bend right] (2);
+				\path (c) edge[bend right] (3);
+				\path (d) edge[bend right] (4);
+			\end{scope}
+			\node at (1,-2) {$G_1$};
+			\node at (7,-2) {$G_2$};
+			\path (1.5,-2) edge[draw=darkgray, dashed, thick, ->, >=latex] node[below] {$f$} (6.5,-2);
+		\end{tikzpicture}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Isomorphism: degrees}
+
+	\begin{block}{Exercise}
+		Determine if these two graphs are isomorphic.
+
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+	        \begin{tikzpicture}
+	          \begin{scope}[every node/.style={circle,thick,draw,fill}]
+	            \node (a) at (0,1) {};
+	            \node (b) at (0,4) {};
+	            \node (c) at (2,1) {};
+	            \node (d) at (2,3) {};
+	            \node (e) at (-1,1) {};
+	            \node (f) at (-1,3) {};
+	          \end{scope}
+	          \begin{scope}[every edge/.style={draw=black,thick}]
+	            \path (a) edge (b);
+	            \path (a) edge (d);
+	            \path (a) edge (e);
+	            \path (b) edge (c);
+	            \path (b) edge (d);
+ 	            \path (b) edge (e);
+ 	            \path (b) edge (f);
+ 	            \path (c) edge (d);
+ 	            \path (d) edge (e);           
+ 	            \path (d) edge (f);
+ 	            \path (e) edge (f);
+	          \end{scope}
+	        \end{tikzpicture}
+				\end{center}
+			\end{column}
+			\begin{column}{0.5\textwidth}
+				\begin{center}
+	        \begin{tikzpicture}
+	          \begin{scope}[every node/.style={circle,thick,draw}]
+	            \node (a) at (0,0) {a};
+	            \node (b) at (0,2) {b};
+	            \node (c) at (1,0) {c};
+	            \node (d) at (1,2) {d};
+	            \node (e) at (2,0) {e};
+	            \node (f) at (2,2) {f};
+	          \end{scope}
+	          \begin{scope}[every edge/.style={draw=black,thick}]
+	            \path (a) edge (b);
+	            \path (a) edge (c);
+	            \path (c) edge (e);
+	            \path (a) edge (d);
+	            \path (b) edge (c);
+	            \path (b) edge (d);
+ 	            \path (b) edge (e);
+ 	            \path (b) edge (d);
+ 	            \path (d) edge (f);
+ 	            \path (c) edge (d);
+ 	            \path (d) edge (e);	            
+ 	            \path (e) edge (f);
+	          \end{scope}
+	        \end{tikzpicture}
+				\end{center}
+			\end{column}
+		\end{columns}
+	\end{block}
+\end{frame}
+
 \begin{frame}{Sum of degrees}
 
 	\begin{theorem}
@@ -456,70 +658,7 @@ E = \{&\\
 \end{frame}
 
 
-\begin{frame}{Isomorphism: degrees}
 
-	\begin{block}{Exercise}
-		Determine if these two graphs are isomorphic.
-
-		\begin{columns}
-			\begin{column}{0.5\textwidth}
-				\begin{center}
-	        \begin{tikzpicture}
-	          \begin{scope}[every node/.style={circle,thick,draw,fill}]
-	            \node (a) at (0,1) {};
-	            \node (b) at (0,4) {};
-	            \node (c) at (2,1) {};
-	            \node (d) at (2,3) {};
-	            \node (e) at (-1,1) {};
-	            \node (f) at (-1,3) {};
-	          \end{scope}
-	          \begin{scope}[every edge/.style={draw=black,thick}]
-	            \path (a) edge (b);
-	            \path (a) edge (d);
-	            \path (a) edge (e);
-	            \path (b) edge (c);
-	            \path (b) edge (d);
- 	            \path (b) edge (e);
- 	            \path (b) edge (f);
- 	            \path (c) edge (d);
- 	            \path (d) edge (e);           
- 	            \path (d) edge (f);
- 	            \path (e) edge (f);
-	          \end{scope}
-	        \end{tikzpicture}
-				\end{center}
-			\end{column}
-			\begin{column}{0.5\textwidth}
-				\begin{center}
-	        \begin{tikzpicture}
-	          \begin{scope}[every node/.style={circle,thick,draw}]
-	            \node (a) at (0,0) {a};
-	            \node (b) at (0,2) {b};
-	            \node (c) at (1,0) {c};
-	            \node (d) at (1,2) {d};
-	            \node (e) at (2,0) {e};
-	            \node (f) at (2,2) {f};
-	          \end{scope}
-	          \begin{scope}[every edge/.style={draw=black,thick}]
-	            \path (a) edge (b);
-	            \path (a) edge (c);
-	            \path (c) edge (e);
-	            \path (a) edge (d);
-	            \path (b) edge (c);
-	            \path (b) edge (d);
- 	            \path (b) edge (e);
- 	            \path (b) edge (d);
- 	            \path (d) edge (f);
- 	            \path (c) edge (d);
- 	            \path (d) edge (e);	            
- 	            \path (e) edge (f);
-	          \end{scope}
-	        \end{tikzpicture}
-				\end{center}
-			\end{column}
-		\end{columns}
-	\end{block}
-\end{frame}
 
 
 \begin{frame}{Directed graph definition}
@@ -535,13 +674,211 @@ E = \{&\\
 \end{frame}
 
 
+\begin{frame}{Example directed graphs}
+  \begin{columns}
+		\begin{column}{0.45\textwidth}
+			\begin{center}
+				\begin{adjustbox}{max width={0.9\textwidth}, center}
+					\begin{tikzpicture}
+						\begin{scope}[every node/.style={fill=black, circle}]
+		    			\node (a) at (0,0) {};
+							\node (b) at (2,2) {};
+							\node (c) at (2,0) {};
+							\node (d) at (0,2) {};
+						\end{scope}
+						\begin{scope}[every edge/.style={draw=black, very thick, ->, >=latex}]
+							\path (a) edge (b);
+							\path (a) edge[bend right] (c);
+							\path (c) edge[bend right] (a);
+							\path (a) edge (d);
+							\path (d) edge (b);
+							\path (d) edge (c);
+						\end{scope}
+						\node at (1,-1) {\tiny 4 vertices, 6 directed edges};
+					\end{tikzpicture}
+				\end{adjustbox}
+			\end{center}
+		\end{column}
+		\begin{column}{0.45\textwidth}
+			\begin{center}
+				\begin{adjustbox}{max width={0.9\textwidth}, center}
+					\begin{tikzpicture}
+						\begin{scope}[every node/.style={fill=black, circle}]
+		    			\node (a) at (0,0) {};
+							\node (b) at (1,1) {};
+							\node (c) at (0,1) {};
+							\node (d) at (2,1) {};
+							\node (e) at (2,0) {};
+							\node (f) at (1,0) {};
+						\end{scope}
+						\begin{scope}[every edge/.style={draw=black, very thick, ->, >=latex}]
+							\path (a) edge (b);
+							\path (a) edge (c);
+							\path (b) edge (c);
+							\path (d) edge (e);
+						\end{scope}
+						\node at (1,-1) {\tiny 6 vertices, 4 directed edges};
+					\end{tikzpicture}
+				\end{adjustbox}
+			\end{center}
+		\end{column}
+	\end{columns}
+	\vspace{5mm}
+	\begin{columns}
+		\begin{column}{0.45\textwidth}
+			\begin{center}
+				\begin{adjustbox}{max width={0.9\textwidth}, center}
+					\begin{tikzpicture}
+						\begin{scope}[every node/.style={fill=black, circle}]
+		    			\node (a) at (1  ,1) {};
+							\node (b) at (1.5,0) {};
+							\node (c) at (2  ,1) {};
+							\node (d) at (1  ,2) {};
+							\node (e) at (0  ,1) {};
+							\node (f) at (0.5,0) {};
+						\end{scope}
+						\begin{scope}[every edge/.style={draw=black, very thick, ->, >=latex}]
+							\path (a) edge (b);
+							\path (d) edge (a);
+							\path (a) edge (f);
+							\path (b) edge (c);
+							\path (c) edge (d);
+							\path (d) edge (e);
+							\path (e) edge (f);
+							\path (f) edge (b);
+						\end{scope}
+						\node at (1,-1) {\tiny 6 vertices, 8 directed edges};
+					\end{tikzpicture}
+				\end{adjustbox}
+			\end{center}
+		\end{column}
+				\begin{column}{0.45\textwidth}
+			\begin{center}
+				\begin{adjustbox}{max width={0.9\textwidth}, center}
+					\begin{tikzpicture}
+						\begin{scope}[every node/.style={fill=black, circle}]
+		    			\node (a) at (0,0) {};
+						\end{scope}
+						\node at (0,-1) {\tiny 1 vertex, 0 directed edges};
+					\end{tikzpicture}
+				\end{adjustbox}
+			\end{center}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+
+
 \begin{frame}{Multigraph definition}
 	\begin{definition}
-	A \emph{multigraph} consists of a finite set $V$ and a multiset $E$ of 2-subsets from $V$.
+	A \emph{multigraph} consists of a finite set $V$ and a multiset $E$ of 2-multisubsets from $V$.
 	\end{definition}
 	\vspace{0.2cm}
 	\begin{description}
 		\item[Multisets] are like sets, but the same element can be in the set more than once.
 		\item[Directed multigraphs] are similar, but $E$ is a set of 2-tuples of elements in $V$.
 	\end{description}
+\end{frame}
+
+\begin{frame}{Example multigraphs}
+  \begin{columns}
+		\begin{column}{0.45\textwidth}
+			\begin{center}
+				\begin{adjustbox}{max width={0.9\textwidth}, center}
+					\begin{tikzpicture}[every loop/.style={}]
+						\begin{scope}[every node/.style={fill=black, circle}]
+		    			\node (a) at (0,0) {};
+							\node (b) at (2,2) {};
+							\node (c) at (2,0) {};
+							\node (d) at (0,2) {};
+						\end{scope}
+						\begin{scope}[every edge/.style={draw=black, very thick}]
+							\path (a) edge (b);
+							\path (c) edge (a);
+							\path (a) edge (d);
+							\path (d) edge (b);
+							\path (d) edge[bend right] (c);
+							\path (d) edge[bend left] (c);
+							\path (c) edge[loop right] (c);
+						\end{scope}
+						\node at (1,-1) {\tiny Multigraph};
+					\end{tikzpicture}
+				\end{adjustbox}
+			\end{center}
+		\end{column}
+		\begin{column}{0.45\textwidth}
+			\begin{center}
+				\begin{adjustbox}{max width={0.9\textwidth}, center}
+					\begin{tikzpicture}
+						\begin{scope}[every node/.style={fill=black, circle}]
+		    			\node (a) at (0,0) {};
+							\node (b) at (1,1) {};
+							\node (c) at (0,1) {};
+							\node (d) at (2,1) {};
+							\node (e) at (2,0) {};
+							\node (f) at (1,0) {};
+						\end{scope}
+						\begin{scope}[every edge/.style={draw=black, very thick}]
+							\path (a) edge (b);
+							\path (a) edge (c);
+							\path (b) edge (c);
+							\path (d) edge (e);
+						\end{scope}
+						\node at (1,-1) {\tiny Still a multigraph};
+					\end{tikzpicture}
+				\end{adjustbox}
+			\end{center}
+		\end{column}
+	\end{columns}
+	\vspace{5mm}
+	\begin{columns}
+		\begin{column}{0.45\textwidth}
+			\begin{center}
+				\begin{adjustbox}{max width={0.9\textwidth}, center}
+					\begin{tikzpicture}[every loop/.style={}]
+						\begin{scope}[every node/.style={fill=black, circle}]
+		    			\node (a) at (0,0) {};
+							\node (b) at (2,2) {};
+							\node (c) at (2,0) {};
+							\node (d) at (0,2) {};
+						\end{scope}
+						\begin{scope}[every edge/.style={draw=black, very thick, ->, >=latex}]
+							\path (a) edge (b);
+							\path (c) edge (a);
+							\path (a) edge (d);
+							\path (d) edge (b);
+							\path (d) edge[bend right] (c);
+							\path (d) edge[bend left] (c);
+							\path (c) edge[loop right] (c);
+						\end{scope}
+						\node at (1,-1) {\tiny Directed multigraph};
+					\end{tikzpicture}
+				\end{adjustbox}
+			\end{center}
+		\end{column}
+		\begin{column}{0.45\textwidth}
+			\begin{center}
+				\begin{adjustbox}{max width={0.9\textwidth}, center}
+					\begin{tikzpicture}
+						\begin{scope}[every node/.style={fill=black, circle}]
+		    			\node (a) at (0,0) {};
+							\node (b) at (1,1) {};
+							\node (c) at (0,1) {};
+							\node (d) at (2,1) {};
+							\node (e) at (2,0) {};
+							\node (f) at (1,0) {};
+						\end{scope}
+						\begin{scope}[every edge/.style={draw=black, very thick, ->, >=latex}]
+							\path (a) edge (b);
+							\path (a) edge (c);
+							\path (b) edge (c);
+							\path (d) edge (e);
+						\end{scope}
+						\node at (1,-1) {\tiny Still a directed multigraph};
+					\end{tikzpicture}
+				\end{adjustbox}
+			\end{center}
+		\end{column}
+	\end{columns}
+	
 \end{frame}
