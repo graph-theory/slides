@@ -193,17 +193,17 @@
 \begin{frame}{Heights and leaves of $m$-ary rooted trees}
   \begin{theorem}
     The height $h$ of an $m$-ary rooted tree with $l$ leaves is at least $\log_m l$.
-    That is:
-    \[ h \geq \log_m l \]
+    That is: $h \geq \log_m l$.
   \end{theorem}
   \begin{proof}
-    Note that $h \geq log_m l \hspace{0.1cm} \Leftrightarrow \hspace{0.1cm} m^h \geq m^{log_m l} \hspace{0.1cm} \Leftrightarrow \hspace{0.1cm} m^h \geq l$.
+    Note: $h \geq log_m l \hspace{0.1cm} \Leftrightarrow \hspace{0.1cm} m^h \geq m^{log_m l} \hspace{0.1cm} \Leftrightarrow \hspace{0.1cm} m^h \geq l$.
     So we'll just show $l$ is at most $m^h$.
-    For a tree of height 0, there is only one leaf and $m^0 \geq 1$.
-    Next suppose the theorem is true for trees of height $h-1$, and consider a tree of height $h$ with $l$ leaves.
-    We can create $m$ trees of height $h-1$ from it by deleting the root.
-    Each of these smaller trees has at most $m^{h-1}$ leaves, and there are $m$ of them.
-    So the big tree has at most $m \times m^{h-1} = m^h$ leaves.
+    For a tree of height 0, $l = 1$ and $m^0 = 1$ so $m^h \geq l$.
+    Now assume the theorem is true for trees of height $i-1$.
+    Consider a tree of height $i$ with $l$ leaves.
+    We can create $m$ trees of height $i-1$ from it by deleting the root.
+    Each of these smaller trees has at most $m^{h-1}$ leaves by assumption.
+    There are $m$ of these, so the big tree has at most $m \times m^{h-1} = m^h$ leaves.
   \end{proof}
 \end{frame}
 
@@ -255,6 +255,36 @@
     \end{column}
   \end{columns}
 \end{frame}
+
+
+\begin{frame}[fragile]{Deleting the root of an $m$-ary tree}
+  \begin{center}
+    \begin{tikzpicture}[level/.style={level distance = 2cm},level 1/.style={sibling distance=26mm},level 2/.style={sibling distance=8mm}]
+      \begin{scope}[every node/.style={circle,thick,fill}]
+        \node[fill=red] {}
+          child[draw=red] { node {}
+            child[draw=black] { node[green!50!black] {} }
+            child[draw=black] { node[green!50!black] {} }
+            child[draw=black] { node[green!50!black] {} }
+          }
+          child[draw=red] { node {}
+            child[draw=black] { node[green!50!black] {} }
+            child[draw=black] { node[green!50!black] {} }
+            child[draw=black] { node[green!50!black] {} }
+          }
+          child[draw=red] { node {}
+            child[draw=black] { node[green!50!black] {} }
+            child[draw=black] { node[green!50!black] {} }
+            child[draw=black] { node[green!50!black] {} }
+          };
+      \end{scope}
+      \node at (0,1) {$m$ smaller trees of height $h-1$};
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+
+
 
 
 \begin{frame}{Spanning tree}
