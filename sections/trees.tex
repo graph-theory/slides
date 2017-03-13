@@ -53,17 +53,15 @@
 
 \begin{frame}{Rooted trees}
   \begin{description}
-    \item[Root] Choose any vertex of a tree and call it a root.
+    \item[Any vertex] of a tree can be called its root.
     \item[Levels] Root is at level 0, neighbours of the root are at level 1, their other neighbours at level 2, and so on.
     \item[Height] of a tree is $h$, where there's vertex at level $h$ but not at level $h+1$.
     \item[Leaf] Vertex at level $i$ not connected to a vertex at level $i+1$.
-    \item[Internal vertex] -- a vertex that is not a leaf.
   \end{description}
-  \vspace{0.5cm}
   \begin{center}
     \begin{tikzpicture}
     \begin{scope}[every node/.style={circle,thick,draw,fill}]
-      \node (a) at (1.5,3) {};
+      \node (a) at (1.5,3 ) {};
       \node (b)[green!50!black] at (0.5,1.5) {};
       \node (c) at (2.5,1.5) {};
       \node (d)[green!50!black] at (1.5,0) {};
@@ -287,16 +285,41 @@
 
 
 
-\begin{frame}{Spanning tree}
+\begin{frame}{Spanning trees}
   \begin{alertblock}{Subgraph}
-    A \emph{subgraph} $H = (V_H, E_H)$ of a graph $G = (V,E)$ is a graph such that $V_H$ is a subset of $V$, $E_H$ is a subset of $E$, and no element of $E_H$ contains a vertex not in $V_H$.
+    A \emph{subgraph} $H = (V_H, E_H)$ of a graph $G = (V,E)$ is a graph such that $V_H$ is a subset of $V$, $E_H$ is a subset of $E$, and no edge in $E_H$ contains a vertex not in $V_H$.
   \end{alertblock}
   \vspace{0.4cm}
   \begin{alertblock}{Spanning Tree}
     A \emph{spanning tree} $T$ of a connected graph $G$ is a subgraph of $G$ such that:
     \begin{itemize}
-      \item the vertix of $T$ is the vertex set of $G$ and
+      \item the vertex set of $T$ is the vertex set of $G$ and
       \item $T$ is a tree.
     \end{itemize}
   \end{alertblock}
+\end{frame}
+
+\begin{frame}[fragile]{Spanning tree example}
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{scope}[every node/.style={circle,thick,draw=red,text=red}]
+        \node (a) at (2,2) {a};
+        \node (b) at (4,2) {b};
+        \node (c) at (4,0) {c};
+        \node (d) at (2,0) {d};
+        \node (e) at (0,0) {e};
+      \end{scope}
+      \begin{scope}[every edge/.style={draw=red,thick}]
+        \path (a) edge (b);
+        \path (a) edge[draw=black] (c);
+        \path (a) edge (d);
+        \path (b) edge[draw=black] (c);
+        \path (c) edge (d);
+        \path (d) edge (e);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+  \begin{center}
+    Spanning tree in red.
+  \end{center}
 \end{frame}
