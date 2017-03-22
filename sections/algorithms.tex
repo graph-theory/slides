@@ -3,9 +3,21 @@
 \section{Algorithms}
 
 \begin{frame}{Decision tree}
-  \begin{definition}
-    A decision tree is a rooted tree where each vertex represents a decision. The possible results of each decision are represented by the edges connecting the vertex to the vertices at the next level down. Final outcomes of the procedure are represented by the leaves.
-  \end{definition}
+  \begin{description}
+    \item[Decision trees] are rooted trees where each vertex represents a decision.
+    \vspace{2mm}
+    \item[Possible results] of each decision are represented by the edges.
+    \vspace{2mm}
+    \item[These edges] connect the decision vertex to the vertices representing the outcomes, at the next level down.
+    \vspace{2mm}
+    \item[These vertices] is turn can represent more decisions.
+    \vspace{2mm}
+    \item[Final outcomes] of the procedure are represented by the leaves.
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Decision tree example}
+
   \begin{center}
     \begin{tikzpicture}
     \begin{scope}[every node/.style={circle,draw,scale=0.6}]
@@ -45,3 +57,12 @@
   \end{center}
 \end{frame}
 
+\begin{frame}{Height of a decision tree}
+  \begin{description}
+    \item[The height] of a decision tree is the maximum distance from root to leaf (as usual).
+    \vspace{2mm}
+    \item[Each] internal vertex represents a decision.
+    \vspace{2mm}
+    \item[The height] therefore is the maximium number of decisions made when starting from the root of the tree.
+  \end{description}
+\end{frame}
