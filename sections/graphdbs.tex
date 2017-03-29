@@ -139,7 +139,7 @@ DELETE x;
 \end{frame}
 
 \begin{frame}[fragile]{Cypher: shortestPath}
-  Find the minimum number of hops betweem two nodes.
+  Find the minimum number of hops between two nodes.
   \begin{minted}[linenos, frame=lines]{cypher}
 MATCH p=shortestPath(
   (a:Actor {id: 1})-[*]-(b:Actor {id: 10})
