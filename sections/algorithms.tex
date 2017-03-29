@@ -37,11 +37,11 @@
         child { node {\footnotesize $\beta < \gamma$}
           child { node {\footnotesize $\alpha < \gamma$}
             child { node {\footnotesize $\beta \alpha \gamma$} edge from parent [->] node [left] {\tiny y} }
-            child { node {\footnotesize $\beta \gamma \alpha$} edge from parent [->] node [left] {\tiny y} }
+            child { node {\footnotesize $\beta \gamma \alpha$} edge from parent [->] node [right] {\tiny n} }
             edge from parent [->] node [left] {\tiny y}
           }
           child { node {\footnotesize $\alpha < \gamma$}
-            child { node {\footnotesize $n/a$} edge from parent [->] node [right] {\tiny n} }
+            child { node {\footnotesize $n/a$} edge from parent [->] node [left] {\tiny y} }
             child { node {\footnotesize $\gamma \beta \alpha$} edge from parent [->] node [right] {\tiny n} }
             edge from parent [->] node [right] {\tiny n} 
           }
@@ -93,7 +93,7 @@
   \begin{description}
     \item[Heap sort] uses a tree as part of the algorithm.
     \vspace{4mm}
-    \item[This tree] is not a decision trees, it is for another purpose.
+    \item[This tree] is not a decision tree, it is for another purpose.
     \vspace{4mm}
     \item[Different] steps in the algorithm manipulate the tree.
     \vspace{4mm}
