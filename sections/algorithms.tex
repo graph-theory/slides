@@ -208,3 +208,74 @@
   \vspace{4mm}
   $$ (17,23,35,47,61,65,73,77,82,85,91,97) $$
 \end{frame}
+
+
+\begin{frame}{Searching trees and graphs}
+  \begin{description}
+    \item[Two main methods] for searching through the nodes of a graph or tree are depth-first and breadth-first search.
+    \item[In both] you pick one node to start at (call this the root).
+    \item[Depth-first] means you go as far along each branch as possible before going to the next branch.
+    \item[Breadth-first] means you visit each vertex at level $i$ before prodeeding to level $i+1$.
+    \item[These] methods can be used to find a spanning tree of a graph.
+  \end{description}
+\end{frame}
+
+
+\begin{frame}[fragile]{Depth-first search}
+  \begin{center}
+    \forestset{declare keylist register={through}, through={}, circles tree/.style={for tree={circle, draw, fill=white, align=center},}, tracing tree/.style={delay={for #1={if phantom={}{through+/.option=name},}},before drawing tree={tikz+/.wrap pgfmath arg={\foreach \i [count=\j, remember=\i as \k] in {##1} \ifnum\j>1 \draw [densely dashed, -Stealth] (\k.west) -- (\i.west)\fi;}{(through)}},}}
+    \begin{forest}
+      circles tree, tracing tree=tree,%tree breadth-first,
+      [$a$
+        [$b$
+          [$d$
+            [$h$]
+            [,phantom]
+          ]
+          [$e$
+            [$i$]
+            [$j$]
+          ]
+        ]
+        [$c$
+          [$f$
+            [,phantom]
+            [$k$]
+          ]
+          [$g$]
+        ]
+      ]
+    \end{forest}
+  \end{center}
+  \citeurl{tex.stackexchange.com/questions/332300}
+\end{frame}
+
+
+\begin{frame}[fragile]{Breadth-first search}
+  \begin{center}
+    \forestset{declare keylist register={through}, through={}, circles tree/.style={for tree={circle, draw, fill=white, align=center},}, tracing tree/.style={delay={for #1={if phantom={}{through+/.option=name},}},before drawing tree={tikz+/.wrap pgfmath arg={\foreach \i [count=\j, remember=\i as \k] in {##1} \ifnum\j>1 \draw [densely dashed, -Stealth] (\k.west) -- (\i.west)\fi;}{(through)}},}}
+    \begin{forest}
+      circles tree, tracing tree=tree breadth-first,
+      [$a$
+        [$b$
+          [$d$
+            [$h$]
+            [,phantom]
+          ]
+          [$e$
+            [$i$]
+            [$j$]
+          ]
+        ]
+        [$c$
+          [$f$
+            [,phantom]
+            [$k$]
+          ]
+          [$g$]
+        ]
+      ]
+    \end{forest}
+  \end{center}
+  \citeurl{tex.stackexchange.com/questions/332300}
+\end{frame}
