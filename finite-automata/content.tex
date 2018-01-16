@@ -1,0 +1,116 @@
+\begin{frame}[fragile]{Deterministic Finite Automaton: Example 1}
+  \begin{center}
+    \begin{tikzpicture}[auto, on grid, node distance=2cm, initial text=, >=latex]
+      \node[state, initial]   (q_0)                {$q_0$}; 
+      \node[state, accepting] (q_1) [right of=q_0] {$q_1$};
+      \node[state]            (q_2) [right of=q_1] {$q_2$}; 
+      \path[->] 
+        (q_0) edge [loop above] node {$0$}   ()
+              edge []           node {$1$}   (q_1)
+        (q_1) edge [bend left]  node {$0$}   (q_2)
+              edge [loop above] node {$1$}   ()
+        (q_2) edge [bend left]  node {$0,1$} (q_1);
+    \end{tikzpicture}
+  \end{center}
+  \begin{center}
+    Try running the following strings on the automaton. \\
+    $1101$, $1$, $01$, $11$, $0101010101$ \\
+    Describe the strings that the automaton recognises.
+  \end{center}
+  \citeeg{Sipser page 34}
+\end{frame}
+
+
+\begin{frame}[fragile]{Deterministic Finite Automaton: Example 2}
+  \begin{center}
+    \begin{tikzpicture}[auto, on grid, node distance=2cm, initial text=, >=latex]
+      \node[state, initial]   (b_0)                {$b_0$}; 
+      \node[state]            (b_1) [right of=b_0] {$b_1$};
+      \node[state, accepting] (b_2) [right of=b_1] {$b_2$}; 
+      \path[->] 
+        (b_0) edge [loop below] node {$a$}   ()
+              edge []           node {$b$}   (b_1)
+        (b_1) edge [loop below] node {$a$}   ()
+              edge []           node {$b$}   (b_2)
+        (b_2) edge [loop below] node {$a,b$} ();
+    \end{tikzpicture}
+  \end{center}
+  \begin{center}
+    Try running the following strings on the automaton. \\
+    $aaaa$, $ababa$, $bababb$, $abaa$ \\
+    Describe the strings that the automaton recognises.
+  \end{center}
+  \citeeg{Sipser chapter 1 4(a) -- Part 2}
+\end{frame}
+
+\begin{frame}[fragile]{Deterministic Finite Automaton: Example 3}
+  \begin{center}
+    \begin{tikzpicture}[auto, on grid, node distance=2cm, initial text=, >=latex]
+      \node[state, initial]   (a_0)                {$a_0$}; 
+      \node[state]            (a_1) [right of=a_0] {$a_1$};
+      \node[state]            (a_2) [right of=a_1] {$a_2$}; 
+      \node[state, accepting] (a_3) [right of=a_2] {$a_3$};
+      \path[->] 
+        (a_0) edge [loop below] node {$b$}   ()
+              edge []           node {$a$}   (a_1)
+        (a_1) edge [loop below] node {$b$}   ()
+              edge []           node {$a$}   (a_2)
+        (a_2) edge [loop below] node {$b$}   ()
+              edge []           node {$a$}   (a_3)
+        (a_3) edge [loop below] node {$a,b$} ();
+    \end{tikzpicture}
+  \end{center}
+  \begin{center}
+    Try running the following strings on the automaton. \\
+    $aaaa$, $ababa$, $bababb$, $abaa$ \\
+    Describe the strings that the automaton recognises.
+  \end{center}
+  \citeeg{Sipser chapter 1 4(a) -- Part 1}
+\end{frame}
+
+\begin{frame}[fragile]{Deterministic Finite Automaton (DFA) definition}
+  A DFA is a 5-tuple $(Q,\Sigma,\delta,q_0,F)$ where
+  \begin{description}
+    \item[$Q$] is a finite set of \emph{states},
+    \item[$\Sigma$] is a finite set called the \emph{alphabet},
+    \item[$\delta$] is the \emph{transition function} ($Q \times \Sigma \rightarrow Q$),
+    \item[$q_0$] is the \emph{start state} ($\in Q$), and
+    \item[$F$] is the set of \emph{accept states} ($\subseteq Q$). 
+  \end{description}
+  \citeeg{Sipser page 35}
+\end{frame}
+
+\begin{frame}[fragile]{Example 1 definition}
+  \begin{description}
+    \item[$Q =$] $\{ q_0, q_1, q_2\}$
+    \item[$\Sigma =$] $\{ 0, 1 \}$
+    \item[$\delta =$] $\{ ((q_0,0),q_0), ((q_0,1),q_1)$, $((q_1,0),q_2), ((q_1,1),q_1)$, $((q_2,0),q_1), ((q_2,1),q_1) \}$
+    \item[$q_0 =$] $q_0$
+    \item[$F =$] $\{ q_1 \}$
+  \end{description}
+  \citeeg{Sipser page 36}
+\end{frame}
+
+\begin{frame}[fragile]{Example 2 definition}
+  A DFA is a 5-tuple $(Q,\Sigma,\delta,q_0,F)$ where
+  \begin{description}
+    \item[$Q =$] $\{ b_0, b_1, b_2\}$
+    \item[$\Sigma =$] $\{ a, b \}$
+    \item[$\delta =$] $\{ ((b_0,a),b_0), ((b_0,b),b_1)$, $((b_1,a),b_1), ((b_1,b),b_2)$, $((b_2,a),b_2), ((b_2,b),b_2) \}$
+    \item[$q_0 =$] $b_0$
+    \item[$F =$] $\{ b_2 \}$
+  \end{description}
+  \citeeg{Sipser chapter 1 4(a) -- Part 1}
+\end{frame}
+
+\begin{frame}[fragile]{Example 3 definition}
+  A DFA is a 5-tuple $(Q,\Sigma,\delta,q_0,F)$ where
+  \begin{description}
+    \item[$Q =$] $\{ a_0, a_1, a_2, a_3 \}$
+    \item[$\Sigma =$] $\{ a, b \}$
+    \item[$\delta =$] $\{ ((a_0,a),a_1), ((a_0,b),a_0)$, $((a_1,a),a_2), ((a_1,b),a_1)$, $((a_2,a),a_3), ((a_2,b),a_2) \}$, $((a_3,a),a_3), ((a_3,b),a_3) \}$
+    \item[$q_0 =$] $a_0$
+    \item[$F =$] $\{ a_3 \}$
+  \end{description}
+  \citeeg{Sipser chapter 1 4(a) -- Part 1}
+\end{frame}
